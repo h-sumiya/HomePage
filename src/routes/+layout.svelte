@@ -1,5 +1,5 @@
 <script>
-	import Header from "./header.svelte";
+	import Header from './header.svelte';
 	import "./styles.css";
 	import "beercss/dist/cdn/beer.min.css";
 </script>
