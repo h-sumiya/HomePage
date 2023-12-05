@@ -1,59 +1,63 @@
 <script>
-	import Counter from './Counter.svelte';
-	import welcome from '$lib/images/svelte-welcome.webp';
-	import welcome_fallback from '$lib/images/svelte-welcome.png';
+	import Row from "./../lib/ui/row.svelte";
+	import othelloLogo from "$lib/assets/othello.png";
+	import syllabusLogo from "$lib/assets/syllabus.png";
+	import ThumbnailCard from "../lib/thumbnail_card.svelte";
 </script>
 
 <svelte:head>
-	<title>Home</title>
-	<meta name="description" content="Svelte demo app" />
+	<title>製作物置き場</title>
+	<meta name="description" content="製作物置き場" />
 </svelte:head>
 
-<section>
-	<h1>
-		<span class="welcome">
-			<picture>
-				<source srcset={welcome} type="image/webp" />
-				<img src={welcome_fallback} alt="Welcome" />
-			</picture>
-		</span>
-
-		to your new<br />SvelteKit app
-	</h1>
-
-	<h2>
-		try editing <strong>src/routes/+page.svelte</strong>
-	</h2>
-
-	<Counter />
-</section>
+<div class="padding limit">
+	<div class="row wrap-row">
+		<ThumbnailCard
+			title="オセロ"
+			description="AIと対戦できるオセロです。"
+			href="/othello"
+			tags={[
+				"Rust",
+				"WASM",
+				"Svelte",
+				"AI",
+				"CodinGame",
+				"PyTorch",
+				"SIMD",
+			]}
+		>
+			<img class="responsive small" src={othelloLogo} alt="othello" />
+		</ThumbnailCard>
+		<ThumbnailCard
+			title="上智非公式シラバス"
+			description="スマートフォンに対応したUIでブックマークも可能なシラバスです。"
+			href="https://syllabus.hiro.red"
+			tags={[
+				"Cloudflare",
+				"D1",
+				"R2",
+				"KV",
+				"Svelte",
+				"Protobuf",
+				"Material Design",
+			]}
+			wip
+		>
+			<img class="responsive small" src={syllabusLogo} alt="syllabus" />
+		</ThumbnailCard>
+	</div>
+</div>
 
 <style>
-	section {
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
-		flex: 0.6;
+	.limit {
+		max-width: var(--app-max-width);
+		width: 100%;
+		margin: 0 auto;
 	}
 
-	h1 {
-		width: 100%;
-	}
-
-	.welcome {
-		display: block;
-		position: relative;
-		width: 100%;
-		height: 0;
-		padding: 0 0 calc(100% * 495 / 2048) 0;
-	}
-
-	.welcome img {
-		position: absolute;
-		width: 100%;
-		height: 100%;
-		top: 0;
-		display: block;
+	.wrap-row {
+		flex-wrap: wrap;
+		justify-content: start;
+		flex-shrink: 1;
 	}
 </style>
