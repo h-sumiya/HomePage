@@ -1,7 +1,6 @@
 <script>
-    import Icons from "./../lib/ui/icons.svelte";
-    import IconButton from "./../lib/ui/icon_button.svelte";
-    import { isDark } from "../lib/store.js";
+    import IconButton from "./ui/icon_button.svelte";
+    import { isDark } from "./store.js";
 </script>
 
 <header>

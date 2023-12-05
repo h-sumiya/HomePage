@@ -1,5 +1,4 @@
 <script>
-	import Row from "./../lib/ui/row.svelte";
 	import othelloLogo from "$lib/assets/othello.png";
 	import syllabusLogo from "$lib/assets/syllabus.png";
 	import ThumbnailCard from "../lib/thumbnail_card.svelte";
