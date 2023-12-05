@@ -1,7 +1,7 @@
 <script>
-	import Header from './header.svelte';
 	import "./styles.css";
 	import "beercss/dist/cdn/beer.min.css";
+	import Header from '../lib/header.svelte';
 </script>
 
 <div class="app">
@@ -10,6 +10,7 @@
 		<slot />
 	</main>
 </div>
+
 
 <style>
 	.app {
