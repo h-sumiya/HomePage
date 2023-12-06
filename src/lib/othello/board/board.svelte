@@ -10,7 +10,7 @@
     export let size = 500;
 
     let cell_data;
-    const dcell = { type: "null", latest: false, suggest_type: "null" };
+    const dcell = { color: null, latest: false, suggest: null };
     $: {
         let result = [];
         let legal = legal_moves(data, player);
@@ -19,18 +19,17 @@
                 if (legal.includes(i)) {
                     let suggest_type = player == 1 ? "black" : "white";
                     result.push({
-                        ...dcell,
-                        type: "null",
+                        color: null,
                         latest: false,
-                        suggest_type,
+                        suggest: suggest ? suggest_type : null,
                     });
                 } else {
-                    result.push({ ...dcell, type: "null" });
+                    result.push({ ...dcell });
                 }
             } else if (data[i] == 1) {
-                result.push({ ...dcell, type: "black" });
+                result.push({ ...dcell, color: "black" });
             } else if (data[i] == 2) {
-                result.push({ ...dcell, type: "white" });
+                result.push({ ...dcell, color: "white" });
             }
         }
         if (latest != null) {
@@ -46,7 +45,7 @@
             {#each { length: 8 } as _, x}
                 <Cell
                     {...cell_data[y * 8 + x]}
-                    {suggest}
+                    display_suggest={suggest}
                     {input}
                     index={y * 8 + x}
                     on:click
@@ -60,6 +59,7 @@
     .board {
         display: flex;
         flex-direction: column;
+        background-color: green;
     }
 
     .line {

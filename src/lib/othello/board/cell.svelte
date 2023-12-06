@@ -4,65 +4,107 @@
     export let index;
     let dispatch = createEventDispatcher();
     function click() {
-        if (click_able) {
+        if (clickable) {
             dispatch("click", { index });
         }
     }
 
-    export let type = "null";
+    export let color = "black"; // black, white, null
+    export let suggest = null; // null, black, white
+    export let display_suggest = true;
     export let latest = false;
-    export let suggest = false;
     export let input = false;
-    export let suggest_type = "null";
 
-    let animation = "";
     let before = null;
-    $: if (type == "black") {
-        if (before == "white") {
-            animation = "white_to_black";
-        } else {
-            animation = "";
-        }
-        before = "black";
-    } else if (type == "white") {
-        if (before == "black") {
-            animation = "black_to_white";
-        } else {
-            animation = "";
-        }
-        before = "white";
-    } else {
-        animation = "";
-        before = null;
-    }
+    let animate = false;
+    $: clickable = input && suggest !== null;
 
-    $: click_able = suggest_type != "null" && input;
-    $: s_type = suggest ? `s_${suggest_type}` : "s_null";
+    const animation = async (color) => {
+        if (before === color) {
+            return;
+        }
+        if (before === null || color === null) {
+            before = color;
+            return;
+        }
+        animate = true;
+        await new Promise((resolve) => setTimeout(resolve, 250));
+        before = color;
+        await new Promise((resolve) => setTimeout(resolve, 300));
+        animate = false;
+    };
+
+    $: animation(color);
 </script>
 
-{#if click_able}
-    <!-- svelte-ignore a11y-click-events-have-key-events -->
-    <div
-        class="cell cell-{type} clickable suggest {s_type}"
-        class:latest
-        on:click={click}
-        role="button"
-        tabindex="0"
-    />
-{:else}
-    <div class="cell cell-{type} {animation} suggest {s_type}" class:latest />
-{/if}
+<!-- svelte-ignore a11y-click-events-have-key-events -->
+<!-- svelte-ignore a11y-no-static-element-interactions -->
+<div
+    class="cell"
+    style:--color={before || "transparent"}
+    style:--suggest={latest
+        ? "red"
+        : display_suggest
+          ? suggest || "transparent"
+          : "transparent"}
+    class:clickable
+    class:animate
+    on:click={click}
+/>
 
 <style>
     .cell {
         flex: 1;
         border: 1px solid black;
-        background-color: green;
         position: relative;
+        width: 100%;
+        height: 100%;
+    }
+
+    .cell::after,
+    .cell::before {
+        content: "";
+        display: block;
+        position: absolute;
+        border-radius: 50%;
+    }
+
+    .cell::before {
+        top: 20%;
+        left: 20%;
+        width: 60%;
+        height: 60%;
+        background-color: var(--color);
+    }
+
+    .cell::after {
+        transition: 0.2s;
+        top: 42%;
+        left: 42%;
+        width: 16%;
+        height: 16%;
+        background-color: var(--suggest);
+    }
+
+    @keyframes flip {
+        0% {
+            transform: scaleX(1);
+        }
+        50% {
+            transform: scaleX(0);
+        }
+        100% {
+            transform: scaleX(1);
+        }
+    }
+
+    .animate::before {
+        animation: flip 0.5s;
     }
 
     .clickable {
         cursor: pointer;
+        transition: 0.2s;
     }
 
     @media (hover: hover) {
@@ -75,94 +117,4 @@
             background-color: rgb(27, 102, 27);
         }
     }
-
-    .cell-black::before,
-    .cell-white::before {
-        position: absolute;
-        content: "";
-        display: block;
-        width: 60%;
-        height: 60%;
-        margin: 20%;
-        border-radius: 50%;
-    }
-    .cell-black::before {
-        background-color: black;
-    }
-    .cell-white::before {
-        background-color: white;
-    }
-    .suggest::after {
-        position: absolute;
-        content: "";
-        display: block;
-        width: 20%;
-        height: 20%;
-        margin: 40%;
-        border-radius: 50%;
-        transition: 0.5s;
-    }
-    .s_null::after {
-        background-color: transparent;
-    }
-    .s_black::after {
-        background-color: black;
-    }
-    .s_white::after {
-        background-color: white;
-    }
-    .latest::after {
-        position: absolute;
-        content: "";
-        display: block;
-        width: 14%;
-        height: 14%;
-        margin: 43%;
-        border-radius: 50%;
-        background-color: red;
-    }
-    @keyframes black_to_white {
-        0% {
-            background-color: black;
-            transform: rotateY(0deg);
-        }
-        50% {
-            background-color: black;
-            transform: rotateY(90deg);
-        }
-        50.1% {
-            background-color: white;
-            transform: rotateY(90deg);
-        }
-        100% {
-            background-color: white;
-            transform: rotateY(180deg);
-        }
-    }
-    @keyframes white_to_black {
-        0% {
-            background-color: white;
-            transform: rotateY(0deg);
-        }
-        50% {
-            background-color: white;
-            transform: rotateY(90deg);
-        }
-        50.1% {
-            background-color: black;
-            transform: rotateY(90deg);
-        }
-        100% {
-            background-color: black;
-            transform: rotateY(180deg);
-        }
-    }
-    .black_to_white::before {
-        animation: black_to_white 0.5s;
-    }
-    .white_to_black::before {
-        animation: white_to_black 0.5s;
-    }
 </style>
-
-
