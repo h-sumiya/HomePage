@@ -27,23 +27,6 @@
 		>
 			<img class="responsive small" src={othelloLogo} alt="othello" />
 		</ThumbnailCard>
-		<ThumbnailCard
-			title="上智非公式シラバス"
-			description="スマートフォンに対応したUIでブックマークも可能なシラバスです。"
-			href="https://syllabus.hiro.red"
-			tags={[
-				"Cloudflare",
-				"D1",
-				"R2",
-				"KV",
-				"Svelte",
-				"Protobuf",
-				"Material Design",
-			]}
-			wip
-		>
-			<img class="responsive small" src={syllabusLogo} alt="syllabus" />
-		</ThumbnailCard>
 	</div>
 </div>
 
