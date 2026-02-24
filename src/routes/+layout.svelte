@@ -1,7 +1,6 @@
 <script>
-	import "./styles.css";
-	import "beercss/dist/cdn/beer.min.css";
 	import Header from '../lib/header.svelte';
+	import './styles.css';
 </script>
 
 <div class="app">
@@ -11,13 +10,12 @@
 	</main>
 </div>
 
-
 <style>
 	.app {
 		--app-max-width: 1000px;
+		min-height: 100vh;
 		display: flex;
 		flex-direction: column;
-		height: 100vh;
 		align-items: center;
 	}
 
@@ -26,5 +24,6 @@
 		overflow-y: auto;
 		flex-grow: 1;
 		width: 100%;
+		padding: 0 1rem 1.5rem;
 	}
 </style>

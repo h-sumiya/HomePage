@@ -3,7 +3,6 @@
 	export let description = '';
 	export let wip = false;
 	export let href = '';
-	export let year = '';
 	export let tags = [];
 	export let compactTagCount = 4;
 
@@ -12,42 +11,35 @@
 	$: hiddenTagCount = Math.max(sortedTags.length - visibleTags.length, 0);
 </script>
 
-<article class="thumbnail-card">
+<article class="min-card">
 	{#if wip}
 		<span class="badge badge-pos">WIP</span>
 	{/if}
-	<div class="media">
-		<slot />
+	<div class="title-row">
+		<h6>{title}</h6>
 	</div>
-	<div class="body">
-		<div class="title-row">
-			<h5>{title}</h5>
-			{#if year}
-				<span class="year">{year}</span>
-			{/if}
-		</div>
-		<p>{description}</p>
-		<nav>
-			<a class="action-link" {href}>アクセス</a>
-		</nav>
-		<div class="tag-row">
-			{#each visibleTags as tag}
-				<span class="tag">{tag}</span>
-			{/each}
-			{#if hiddenTagCount > 0}
-				<span class="tag">+{hiddenTagCount}</span>
-			{/if}
-		</div>
+	<p>{description}</p>
+	<div class="tag-row">
+		{#each visibleTags as tag}
+			<span class="tag">{tag}</span>
+		{/each}
+		{#if hiddenTagCount > 0}
+			<span class="tag">+{hiddenTagCount}</span>
+		{/if}
 	</div>
+	<nav>
+		<a class="action-link" {href}>アクセス</a>
+	</nav>
 </article>
 
 <style>
-	.thumbnail-card {
+	.min-card {
 		position: relative;
 		display: flex;
 		flex-direction: column;
-		width: 100%;
 		height: 100%;
+		gap: 0.65rem;
+		padding: 1rem 1.1rem;
 		color: var(--on-surface);
 		border: 1px solid var(--outline-variant);
 		border-radius: 1rem;
@@ -60,98 +52,42 @@
 			background-color 0.18s ease;
 	}
 
-	.thumbnail-card:hover,
-	.thumbnail-card:focus-within {
-		transform: translateY(-4px);
+	.min-card:hover,
+	.min-card:focus-within {
+		transform: translateY(-3px);
 		border-color: var(--outline);
 		background-color: var(--surface-container);
 		box-shadow: var(--elevate1);
 	}
 
-	.media {
-		position: relative;
-		aspect-ratio: 16 / 10;
-		min-height: 9.5rem;
-		overflow: hidden;
-		background-color: var(--surface-container-high);
-	}
-
-	.media :global(img) {
-		width: 100%;
-		height: 100%;
-		object-fit: cover;
-		display: block;
-		opacity: 1;
-		transition:
-			transform 0.25s ease,
-			filter 0.25s ease;
-	}
-
-	.thumbnail-card:hover .media :global(img) {
-		transform: scale(1.04);
-		filter: saturate(1.04);
-	}
-
-	.body {
-		display: flex;
-		flex-direction: column;
-		gap: 0.55rem;
-		height: 100%;
-		padding: 0.95rem 1rem 1rem;
-	}
-
-	.tag-row {
-		display: flex;
-		flex-wrap: wrap;
-		gap: 0.3rem;
-	}
-
-	.tag {
-		border: 1px solid var(--outline-variant);
-		border-radius: 100px;
-		background-color: var(--surface-container-high);
-		color: var(--on-surface-variant);
-		font-size: 0.68rem;
-		line-height: 1.1;
-		padding: 0.16rem 0.44rem;
-		white-space: nowrap;
-	}
-
-	.badge-pos {
-		position: absolute;
-		top: 0.8rem;
-		right: 0.8rem;
-		z-index: 1;
-	}
-
-	.title-row {
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-		gap: 0.5rem;
-	}
-
-	.title-row h5 {
+	.title-row h6 {
 		margin: 0;
-		line-height: 1.2;
+		line-height: 1.25;
 	}
 
 	p {
 		margin: 0;
 		color: var(--on-surface-variant);
-		font-size: 0.9rem;
 		line-height: 1.45;
+		font-size: 0.9rem;
 		flex-grow: 1;
 	}
 
-	.year {
+	.tag-row {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.28rem;
+	}
+
+	.tag {
 		border: 1px solid var(--outline-variant);
+		border-radius: 999px;
 		background-color: var(--surface-container-high);
 		color: var(--on-surface-variant);
-		border-radius: 999px;
-		font-size: 0.75rem;
-		line-height: 1;
-		padding: 0.2rem 0.45rem;
+		font-size: 0.68rem;
+		line-height: 1.15;
+		padding: 0.16rem 0.44rem;
+		white-space: nowrap;
 	}
 
 	.action-link {
@@ -176,5 +112,11 @@
 		color: var(--on-primary-container);
 		background-color: var(--primary-container);
 		border-color: var(--primary-container);
+	}
+
+	.badge-pos {
+		position: absolute;
+		top: 0.8rem;
+		right: 0.8rem;
 	}
 </style>

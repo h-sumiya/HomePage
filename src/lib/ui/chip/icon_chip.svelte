@@ -8,16 +8,41 @@
     export let small = false;
 </script>
 
-<!-- svelte-ignore a11y-missing-attribute -->
-<!-- svelte-ignore a11y-click-events-have-key-events -->
-<!-- svelte-ignore a11y-no-static-element-interactions -->
-<a class="chip round" on:click={onClick} class:costom-small={small}>
-    <i class:tiny={small}>{icon}</i>
-    <span class:small-text={small}>{text}</span>
-</a>
+<button class="chip" class:small on:click={onClick} type="button">
+    {#if icon}
+        <i aria-hidden="true">{icon}</i>
+    {/if}
+    <span>{text}</span>
+</button>
 
 <style>
-    .costom-small {
-        padding: none;
+    .chip {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.34rem;
+        padding: 0.34rem 0.68rem;
+        border: 1px solid var(--outline-variant);
+        border-radius: 999px;
+        background-color: var(--surface-container-high);
+        color: var(--on-surface);
+        cursor: pointer;
+        transition:
+            background-color 0.18s ease,
+            border-color 0.18s ease;
+    }
+
+    .chip:hover {
+        background-color: var(--surface-container);
+        border-color: var(--outline);
+    }
+
+    .chip.small {
+        padding: 0.2rem 0.46rem;
+        font-size: 0.8rem;
+    }
+
+    i {
+        font-style: normal;
+        line-height: 1;
     }
 </style>

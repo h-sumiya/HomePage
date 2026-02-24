@@ -2,9 +2,14 @@
 
 <style>
     span {
-        padding: 4px 8px;
+        display: inline-flex;
+        align-items: center;
+        padding: 0.18rem 0.46rem;
         margin: 0;
-        border: solid 1px;
-        border-radius: 50px;
+        border: 1px solid var(--outline-variant);
+        border-radius: 999px;
+        background-color: var(--surface-container-high);
+        color: var(--on-surface-variant);
+        font-size: 0.76rem;
     }
 </style>

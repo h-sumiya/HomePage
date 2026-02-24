@@ -5,8 +5,8 @@
 
 <header>
 	<nav>
-		<a href="/" class="max left-align"><h5>h-sumiya</h5></a>
-		<a href="https://github.com/h-sumiya" aria-label="GitHub">
+		<a href="/" class="brand"><h5>h-sumiya</h5></a>
+		<a href="https://github.com/h-sumiya" aria-label="GitHub" class="icon-link">
 			<i>
 				<svg viewBox="0 0 96 96" xmlns="http://www.w3.org/2000/svg"
 					><path
@@ -24,16 +24,55 @@
 <style>
 	header {
 		width: 100%;
+		border-bottom: 1px solid var(--outline-variant);
+		background-color: var(--surface-container-low);
 	}
 
 	nav {
 		max-width: var(--app-max-width);
 		width: 100%;
 		margin: 0 auto;
+		padding: 0.8rem 1rem;
+		display: flex;
+		align-items: center;
+		gap: 0.6rem;
+	}
+
+	.brand {
+		text-decoration: none;
+		margin-right: auto;
+	}
+
+	.brand h5 {
+		font-size: 1.02rem;
+		letter-spacing: 0.02em;
+	}
+
+	.icon-link {
+		width: 2.2rem;
+		height: 2.2rem;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		border: 1px solid var(--outline-variant);
+		border-radius: 999px;
+		background-color: var(--surface-container);
+		color: var(--on-surface);
+		text-decoration: none;
+		transition:
+			background-color 0.18s ease,
+			border-color 0.18s ease;
+	}
+
+	.icon-link:hover {
+		background-color: var(--surface-container-high);
+		border-color: var(--outline);
 	}
 
 	svg {
 		width: 24px;
 		height: 24px;
+		display: block;
+		fill: currentColor;
 	}
 </style>

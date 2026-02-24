@@ -34,19 +34,21 @@
     </div>
     <div class="title">色を選択する(ゲームがリセットされます。)</div>
     <div class="inner">
-        <nav class="no-space">
+        <nav class="color-switch">
             <button
-                class="border left-round"
-                class:fill={player == 1}
+                class="select-button left"
+                class:selected={player == 1}
                 disabled={!free}
+                type="button"
                 on:click={() => reset(1)}
             >
                 <span>黒</span>
             </button>
             <button
-                class="border right-round"
-                class:fill={player == 2}
+                class="select-button right"
+                class:selected={player == 2}
                 disabled={!free}
+                type="button"
                 on:click={() => reset(2)}
             >
                 <span>白</span>
@@ -58,6 +60,10 @@
 <style>
     .panel {
         width: 100%;
+        border: 1px solid var(--outline-variant);
+        border-radius: 0.9rem;
+        background-color: var(--surface-container-low);
+        padding: 0.8rem 0.9rem 0.9rem;
     }
 
     @media (width >= 700px) {
@@ -68,18 +74,55 @@
     }
 
     .title {
-        margin-top: 20px;
-        padding-left: 10px;
-        border-bottom: solid 1px gray;
+        margin-top: 1rem;
+        padding: 0 0 0.3rem 0.1rem;
+        border-bottom: solid 1px var(--outline-variant);
+        font-weight: 600;
     }
 
     .inner {
-        margin-left: 20px;
-        margin-top: 10px;
+        margin-left: 0.1rem;
+        margin-top: 0.6rem;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.7rem;
     }
 
     .r_wrap {
         text-align: center;
-        margin: 20px 0 10px 0;
+        margin: 0.35rem 0 0.1rem;
+    }
+
+    .color-switch {
+        display: inline-flex;
+    }
+
+    .select-button {
+        min-width: 3rem;
+        min-height: 2rem;
+        padding: 0.36rem 0.74rem;
+        border: 1px solid var(--outline-variant);
+        background-color: var(--surface-container);
+        color: var(--on-surface);
+        cursor: pointer;
+    }
+
+    .select-button.left {
+        border-radius: 0.6rem 0 0 0.6rem;
+    }
+
+    .select-button.right {
+        border-radius: 0 0.6rem 0.6rem 0;
+        border-left: 0;
+    }
+
+    .select-button.selected {
+        background-color: var(--primary-container);
+        color: var(--on-primary-container);
+    }
+
+    .select-button:disabled {
+        cursor: not-allowed;
+        opacity: 0.6;
     }
 </style>
