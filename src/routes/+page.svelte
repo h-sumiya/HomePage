@@ -106,6 +106,12 @@
 				href="https://github.com/h-sumiya/bulxy"
 				tags={['Go', 'Tailscale', 'Proxy']}
 			></MinCard>
+			<MinCard
+				title="h-sumiya's homepage"
+				description="このホームページのリポジトリです。"
+				href="https://github.com/h-sumiya/HomePage"
+				tags={['Svelte']}
+			></MinCard>
 		</div>
 	</section>
 </div>
