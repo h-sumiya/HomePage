@@ -9,6 +9,7 @@
 </script>
 
 <!-- svelte-ignore a11y-missing-attribute -->
+<!-- svelte-ignore a11y-click-events-have-key-events -->
 <!-- svelte-ignore a11y-no-static-element-interactions -->
 <a class="chip round" on:click={onClick} class:costom-small={small}>
     <i class:tiny={small}>{icon}</i>

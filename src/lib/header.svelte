@@ -6,7 +6,7 @@
 <header>
     <nav>
         <a href="/" class="max left-align"><h5>製作物置き場</h5></a>
-        <a href="https://github.com/h-sumiya">
+        <a href="https://github.com/h-sumiya" aria-label="GitHub">
             <i>
                 <svg viewBox="0 0 96 96" xmlns="http://www.w3.org/2000/svg"
                     ><path
@@ -19,7 +19,7 @@
         </a>
         <IconButton
             name={$isDark ? "dark_mode" : "light_mode"}
-            on:click={() => isDark.toggle()}
+            on:click={() => isDark?.toggle()}
         />
     </nav>
 </header>

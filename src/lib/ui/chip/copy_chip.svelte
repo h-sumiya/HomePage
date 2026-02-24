@@ -16,5 +16,5 @@
     };
 </script>
 
-<SnackBar text="{text}をクリップボードに貼り付けました。" bind:show />
+<SnackBar text={`${text}をクリップボードに貼り付けました。`} bind:show />
 <IconChip {text} {icon} on:click={copyText} {small} />

@@ -1,5 +1,5 @@
 <script>
-    export let text = null;
+    export let text = "";
     export let show = false;
 </script>
 

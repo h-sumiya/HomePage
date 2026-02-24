@@ -9,4 +9,4 @@
     }
 </script>
 
-<progress class="circle {_size}" />
+<progress class="circle {_size}"></progress>

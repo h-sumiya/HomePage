@@ -50,7 +50,7 @@
     class:clickable
     class:animate
     on:click={click}
-/>
+></div>
 
 <style>
     .cell {
