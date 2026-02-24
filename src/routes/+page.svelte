@@ -128,7 +128,7 @@
 		<div class="section-head section-head-row">
 			<div>
 				<h4>Articles</h4>
-				<p>セットアップ手順のメモ</p>
+				<p>技術メモ的な</p>
 			</div>
 			<a class="section-link" href="/articles">すべての記事を見る</a>
 		</div>
