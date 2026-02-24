@@ -1,22 +1,34 @@
 const domain = 'https://hiro.red';
 const links = [
-    {
-        loc: '/',
-        lastmod: "2023/12/05",
-        changefreq: 'daily',
-        priority: 1
-    },
-    {
-        loc: '/othello',
-        lastmod: "2023/12/05",
-        changefreq: 'monthly',
-        priority: 1
-    },
+	{
+		loc: '/',
+		lastmod: '2026/02/24',
+		changefreq: 'daily',
+		priority: 1
+	},
+	{
+		loc: '/othello',
+		lastmod: '2026/02/24',
+		changefreq: 'monthly',
+		priority: 1
+	},
+	{
+		loc: '/ultradata',
+		lastmod: '2026/02/24',
+		changefreq: 'monthly',
+		priority: 0.8
+	},
+	{
+		loc: '/contact',
+		lastmod: '2026/02/24',
+		changefreq: 'monthly',
+		priority: 0.7
+	}
 ];
 
 export async function GET() {
-    return new Response(
-        `
+	return new Response(
+		`
 		<?xml version="1.0" encoding="UTF-8" ?>
 		<urlset
 			xmlns="https://www.sitemaps.org/schemas/sitemap/0.9"
@@ -26,8 +38,9 @@ export async function GET() {
 			xmlns:image="https://www.google.com/schemas/sitemap-image/1.1"
 			xmlns:video="https://www.google.com/schemas/sitemap-video/1.1"
 		>
-            ${links.map(
-            link => `
+            ${links
+							.map(
+								(link) => `
                 <url>
                     <loc>${domain}${link.loc}</loc>
                     <lastmod>${link.lastmod}</lastmod>
@@ -35,12 +48,13 @@ export async function GET() {
                     <priority>${link.priority}</priority>
                 </url>
                 `
-        ).join('')}
+							)
+							.join('')}
 		</urlset>`.trim(),
-        {
-            headers: {
-                'Content-Type': 'application/xml'
-            }
-        }
-    );
+		{
+			headers: {
+				'Content-Type': 'application/xml'
+			}
+		}
+	);
 }

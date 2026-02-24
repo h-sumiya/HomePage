@@ -1,4 +1,5 @@
 <script>
+	import { page } from '$app/stores';
 	import { isDark } from './store.js';
 	import IconButton from './ui/icon_button.svelte';
 </script>
@@ -6,6 +7,9 @@
 <header>
 	<nav>
 		<a href="/" class="brand"><h5>h-sumiya</h5></a>
+		<a href="/contact" class:active={$page.url.pathname === '/contact'} class="contact-link"
+			>Contact</a
+		>
 		<a href="https://github.com/h-sumiya" aria-label="GitHub" class="icon-link">
 			<i>
 				<svg viewBox="0 0 96 96" xmlns="http://www.w3.org/2000/svg"
@@ -62,6 +66,37 @@
 		transition:
 			background-color 0.18s ease,
 			border-color 0.18s ease;
+	}
+
+	.contact-link {
+		min-height: 2.2rem;
+		padding: 0.36rem 0.74rem;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		border: 1px solid var(--outline-variant);
+		border-radius: 999px;
+		background-color: var(--surface-container);
+		color: var(--on-surface);
+		font-size: 0.86rem;
+		font-weight: 600;
+		letter-spacing: 0.01em;
+		text-decoration: none;
+		transition:
+			background-color 0.18s ease,
+			border-color 0.18s ease,
+			color 0.18s ease;
+	}
+
+	.contact-link:hover {
+		background-color: var(--surface-container-high);
+		border-color: var(--outline);
+	}
+
+	.contact-link.active {
+		color: var(--on-primary-container);
+		background-color: var(--primary-container);
+		border-color: var(--primary-container);
 	}
 
 	.icon-link:hover {
