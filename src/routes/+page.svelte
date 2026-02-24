@@ -107,6 +107,12 @@
 				tags={['Go', 'Tailscale', 'Proxy']}
 			></MinCard>
 			<MinCard
+				title="git-clean"
+				description=".gitignore に書かれている不要ファイルを、Git リポジトリがなくても一括削除できる小さな CLI ツールです。"
+				href="https://github.com/h-sumiya/git-clean"
+				tags={['Rust', 'CLI']}
+			></MinCard>
+			<MinCard
 				title="h-sumiya's homepage"
 				description="このホームページのリポジトリです。"
 				href="https://github.com/h-sumiya/HomePage"
