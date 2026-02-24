@@ -1,30 +1,46 @@
+import { articles } from '$lib/articles/article_data';
+
 const domain = 'https://hiro.red';
-const links = [
+const lastmod = '2026/02/24';
+const staticLinks = [
 	{
 		loc: '/',
-		lastmod: '2026/02/24',
+		lastmod,
 		changefreq: 'daily',
 		priority: 1
 	},
 	{
 		loc: '/othello',
-		lastmod: '2026/02/24',
+		lastmod,
 		changefreq: 'monthly',
 		priority: 1
 	},
 	{
 		loc: '/ultradata',
-		lastmod: '2026/02/24',
+		lastmod,
 		changefreq: 'monthly',
 		priority: 0.8
 	},
 	{
+		loc: '/articles',
+		lastmod,
+		changefreq: 'weekly',
+		priority: 0.8
+	},
+	{
 		loc: '/contact',
-		lastmod: '2026/02/24',
+		lastmod,
 		changefreq: 'monthly',
 		priority: 0.7
 	}
 ];
+const articleLinks = articles.map((article) => ({
+	loc: article.href,
+	lastmod,
+	changefreq: 'monthly',
+	priority: 0.7
+}));
+const links = [...staticLinks, ...articleLinks];
 
 export async function GET() {
 	return new Response(

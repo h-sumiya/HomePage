@@ -1,10 +1,13 @@
 <script>
+	import ArticleCards from '$lib/articles/article_cards.svelte';
 	import flutterOpenXRLogo from '$lib/assets/flutter_openxr.png';
 	import othelloLogo from '$lib/assets/othello.png';
 	import ultradataLogo from '$lib/assets/ultradata.webp';
 	import ZupLogo from '$lib/assets/zup.png';
 	import MinCard from '$lib/min_card.svelte';
 	import ThumbnailCard from '$lib/thumbnail_card.svelte';
+
+	export let data;
 </script>
 
 <svelte:head>
@@ -120,6 +123,17 @@
 			></MinCard>
 		</div>
 	</section>
+
+	<section class="section">
+		<div class="section-head section-head-row">
+			<div>
+				<h4>Articles</h4>
+				<p>セットアップ手順のメモ</p>
+			</div>
+			<a class="section-link" href="/articles">すべての記事を見る</a>
+		</div>
+		<ArticleCards articles={data.articles} limit={data.articlePreviewCount} />
+	</section>
 </div>
 
 <style>
@@ -150,6 +164,38 @@
 	.section-head p {
 		margin: 0.2rem 0 0;
 		opacity: 0.72;
+	}
+
+	.section-head-row {
+		display: flex;
+		align-items: flex-end;
+		justify-content: space-between;
+		gap: 0.8rem;
+		flex-wrap: wrap;
+	}
+
+	.section-link {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		padding: 0.32rem 0.68rem;
+		border: 1px solid var(--outline-variant);
+		border-radius: 999px;
+		background-color: var(--surface-container-high);
+		color: var(--on-surface);
+		font-size: 0.78rem;
+		font-weight: 600;
+		text-decoration: none;
+		transition:
+			background-color 0.18s ease,
+			border-color 0.18s ease,
+			color 0.18s ease;
+	}
+
+	.section-link:hover {
+		background-color: var(--primary-container);
+		border-color: var(--primary-container);
+		color: var(--on-primary-container);
 	}
 
 	.featured-grid {
