@@ -1,7 +1,7 @@
 import { articles } from '$lib/articles/article_data';
 
 const domain = 'https://hiro.red';
-const lastmod = '2026/02/24';
+const lastmod = '2026-02-24';
 const staticLinks = [
 	{
 		loc: '/',
